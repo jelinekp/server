@@ -20,7 +20,7 @@ public class server
         try
         {
  
-            ServerSocket serverSocket = new ServerSocket(9343);
+            ServerSocket serverSocket = new ServerSocket(25000);
             System.out.println("Server běží");
 
             while(true)
@@ -31,8 +31,20 @@ public class server
                 BufferedReader br = new BufferedReader(isr);
                 String helloServer = br.readLine();
                 System.out.println(helloServer);
-
                 String odpoved;
+                switch(helloServer){
+                case "hello-server":
+                	 odpoved = "hello-client";// + "\n";
+                break;
+                case "random":
+                	String[] random = { "A", "B", "C", "D"};
+            		odpoved = (random[new Random().nextInt(random.length)]);
+            	break;
+            	default:
+            		odpoved = "chyba";
+            	break;
+                }
+                /*String odpoved;
                 String hello = "hello-server";
                 String equal = hello + "\n";
                 if(helloServer != equal){
@@ -46,7 +58,7 @@ public class server
             		odpoved = (random[new Random().nextInt(random.length)]);
             	}else{
             		odpoved = "funguje to" + "\n";
-            	}
+            	}*/
 
                 OutputStream os = socket.getOutputStream();
                 OutputStreamWriter osw = new OutputStreamWriter(os);
