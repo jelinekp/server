@@ -33,8 +33,18 @@ public class klient
                 System.out.println(helloServer);
 
                 String odpoved;
-                String hello = "hello-server";
-                String equal = hello + "\n";
+                //String hello = "hello-server";
+                switch(helloServer){
+                case "hello-server":
+                	 odpoved = "hello-client";// + "\n";
+                break;
+                case "random":
+                	String[] random = { "A", "B", "C", "D"};
+            		odpoved = (random[new Random().nextInt(random.length)]);
+            	break;
+            	default: odpoved = "chyba";
+                }
+                /*String equal = hello + "\n";
                 if(helloServer != equal){
                 odpoved = "hello-client" + "\n";
                 	
@@ -46,7 +56,7 @@ public class klient
             		odpoved = (random[new Random().nextInt(random.length)]);
             	}else{
             		odpoved = "funguje to" + "\n";
-            	}
+            	}*/
 
                 OutputStream os = socket.getOutputStream();
                 OutputStreamWriter osw = new OutputStreamWriter(os);
