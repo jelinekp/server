@@ -20,12 +20,13 @@ public class Server
         try
         {
  
-            ServerSocket serverSocket = new ServerSocket(25000);
+			ServerSocket serverSocket = new ServerSocket(25004);
             System.out.println("Server běží");
 
             while(true)
             {
-                socket = serverSocket.accept();
+                //serverSocket.();
+            	socket = serverSocket.accept();
                 InputStream is = socket.getInputStream();
                 InputStreamReader isr = new InputStreamReader(is);
                 BufferedReader br = new BufferedReader(isr);
@@ -34,38 +35,24 @@ public class Server
                 String odpoved;
                 switch(helloServer){
                 case "hello-server":
-                	 odpoved = "hello-client";// + "\n";
+                	 odpoved = "hello-client";
                 break;
                 case "random":
                 	String[] random = { "A", "B", "C", "D"};
             		odpoved = (random[new Random().nextInt(random.length)]);
             	break;
-            	default:
-            		odpoved = "chyba";
+            	default: odpoved = "chyba";
             	break;
                 }
-                /*String odpoved;
-                String hello = "hello-server";
-                String equal = hello + "\n";
-                if(helloServer != equal){
-                odpoved = "hello-client" + "\n";
-                	
-                }else{
-                	odpoved = "funguje to!!" + "\n";
-                }
-                if(helloServer != "random"){
-            		String[] random = { "A", "B", "C", "D"};
-            		odpoved = (random[new Random().nextInt(random.length)]);
-            	}else{
-            		odpoved = "funguje to" + "\n";
-            	}*/
-
+                
+                System.out.println(odpoved);
                 OutputStream os = socket.getOutputStream();
                 OutputStreamWriter osw = new OutputStreamWriter(os);
                 BufferedWriter bw = new BufferedWriter(osw);
                 bw.write(odpoved);
-                System.out.println(odpoved);
                 bw.flush();
+                
+                serverSocket.close();
             }
         }
         catch (Exception e)
