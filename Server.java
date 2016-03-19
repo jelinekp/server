@@ -36,16 +36,18 @@ public class Server
                 switch(helloServer){
                 case "hello-server":
                 	 odpoved = "hello-client";
+                	 System.out.println(odpoved);
                 break;
                 case "random":
                 	String[] random = { "A", "B", "C", "D"};
             		odpoved = (random[new Random().nextInt(random.length)]);
+            		System.out.println(odpoved);
             	break;
             	default: odpoved = "chyba";
             	break;
                 }
                 
-                System.out.println(odpoved);
+                
                 OutputStream os = socket.getOutputStream();
                 OutputStreamWriter osw = new OutputStreamWriter(os);
                 BufferedWriter bw = new BufferedWriter(osw);
@@ -54,7 +56,8 @@ public class Server
                 
                 serverSocket.close();
             }
-        }
+            
+        } 
         catch (Exception e)
         {
             e.printStackTrace();
@@ -67,6 +70,5 @@ public class Server
             }
             catch(Exception e){}
         }
-        //serverSocket.close();
     }
 }

@@ -38,6 +38,19 @@ public class Client
             BufferedReader br = new BufferedReader(isr);
             String message = br.readLine();
             System.out.println("Message received from the server : " +message);
+            
+            if(message.equals("hello-client")){
+            	OutputStream os2 = socket.getOutputStream();
+                OutputStreamWriter osw2 = new OutputStreamWriter(os2);
+                BufferedWriter bw2 = new BufferedWriter(osw2);
+                String random = "random";
+                String sendRandom = random + "\n";
+                bw2.write(sendRandom);
+                bw2.flush();
+                System.out.println("Požadavek na random odeslán... : "+sendRandom);
+            }else{
+            	System.out.println("chyba");
+            }
         }
         catch (Exception exception)
         {
